@@ -6,6 +6,8 @@ students = {}
 student_name = ""
 student_grade = 0
 continue_program = True
+not_correct_name = True
+not_valid_grade = True
 key_words = ["agregar", "quitar", "mostrar", "buscar", "todos", "salir"]
 
 def average(num1, num2, num3):
@@ -19,15 +21,15 @@ while continue_program == True:
     if question in key_words: 
     # AGREGA a 'students' nuevos estudiantes con sus promedios de notas.
         if question == "agregar":
-            not_valid_grade = True
-            student_name = input("¿Como se llama el estudiante?: ")
+            student_name = input("¿Como se llama el estudiante?: ")    
             while not_valid_grade == True:
                 # Mientras que no me de un valor valido entre 0 y 10 no sigue el programa
                 student_grade1 = input("Ingrese la primera nota (entre 0 y 10): ")
                 student_grade2 = input("Ingrese la segunda nota (entre 0 y 10): ")
                 student_grade3 = input("Ingrese la tercera nota (entre 0 y 10): ")
-                if 0.0 <= float(student_grade1) <= 10.0 and 0.0 <= float(student_grade2) <= 10.0 and 0.0 <= float(student_grade3) <= 10.0:
-                    not_valid_grade = False
+                if student_grade1.isnumeric() and student_grade2.isnumeric() and student_grade3.isnumeric():
+                    if 0.0 <= float(student_grade1) <= 10.0 and 0.0 <= float(student_grade2) <= 10.0 and 0.0 <= float(student_grade3) <= 10.0:
+                        not_valid_grade = False
                 if not_valid_grade == True:
                     print("La nota no esta entre 0 y 10. Repite las notas.")
                     
