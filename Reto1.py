@@ -19,10 +19,18 @@ while continue_program == True:
     if question in key_words: 
     # AGREGA a 'students' nuevos estudiantes con sus promedios de notas.
         if question == "agregar":
+            not_valid_grade = True
             student_name = input("¿Como se llama el estudiante?: ")
-            student_grade1 = input("Ingrese la primera nota: ")
-            student_grade2 = input("Ingrese la segunda nota: ")
-            student_grade3 = input("Ingrese la tercera nota: ")
+            while not_valid_grade == True:
+                # Mientras que no me de un valor valido entre 0 y 10 no sigue el programa
+                student_grade1 = input("Ingrese la primera nota (entre 0 y 10): ")
+                student_grade2 = input("Ingrese la segunda nota (entre 0 y 10): ")
+                student_grade3 = input("Ingrese la tercera nota (entre 0 y 10): ")
+                if 0.0 <= float(student_grade1) <= 10.0 and 0.0 <= float(student_grade2) <= 10.0 and 0.0 <= float(student_grade3) <= 10.0:
+                    not_valid_grade = False
+                if not_valid_grade == True:
+                    print("La nota no esta entre 0 y 10. Repite las notas.")
+                    
             avg = average(float(student_grade1),float(student_grade2),float(student_grade3))
             students[student_name] = avg
             print(f'Has añadido a "{student_name}" con promedio de nota de {avg}')
@@ -46,7 +54,8 @@ while continue_program == True:
                 print("Ese estudiante no existe.")
         # Muestra TODOS los estudiantes.
         if question == "todos":
-            print(students)
+            for key,value in students.items():
+                print(f"{key}, nota media de: {value}")
         # SALE del programa.
         if question == "salir":
             continue_program = False
