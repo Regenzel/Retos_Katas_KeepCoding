@@ -7,7 +7,6 @@ student_name = ""
 student_grade = 0
 continue_program = True
 not_correct_name = True
-not_valid_grade = True
 key_words = ["agregar", "quitar", "mostrar", "buscar", "todos", "salir"]
 
 def average(num1, num2, num3):
@@ -21,7 +20,8 @@ while continue_program == True:
     if question in key_words: 
     # AGREGA a 'students' nuevos estudiantes con sus promedios de notas.
         if question == "agregar":
-            student_name = input("¿Como se llama el estudiante?: ")    
+            student_name = input("¿Como se llama el estudiante?: ")
+            not_valid_grade = True    
             while not_valid_grade == True:
                 # Mientras que no me de un valor valido entre 0 y 10 no sigue el programa
                 student_grade1 = input("Ingrese la primera nota (entre 0 y 10): ")
@@ -30,7 +30,7 @@ while continue_program == True:
                 if student_grade1.isnumeric() and student_grade2.isnumeric() and student_grade3.isnumeric():
                     if 0.0 <= float(student_grade1) <= 10.0 and 0.0 <= float(student_grade2) <= 10.0 and 0.0 <= float(student_grade3) <= 10.0:
                         not_valid_grade = False
-                if not_valid_grade == True:
+                else:
                     print("La nota no esta entre 0 y 10. Repite las notas.")
                     
             avg = average(float(student_grade1),float(student_grade2),float(student_grade3))
@@ -40,8 +40,11 @@ while continue_program == True:
         # QUITA de 'students' al estudiante que escriba el usuario. 
         if question == "quitar":
             student_name = input("¿Como se llama el estudiante?: ")
-            students.pop(student_name)
-            print(f'Has eliminado a "{student_name}" de la lista')
+            if student_name in students.keys():
+                students.pop(student_name)
+                print(f'Has eliminado a "{student_name}" de la lista')
+            else:
+                print("Ese estudiante no existe.")
         # MUESTRA los estudiantes aprobados.
         if question == "mostrar":
             for key,value in students.items():
