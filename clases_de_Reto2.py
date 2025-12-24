@@ -6,7 +6,7 @@ class User:
     
     def menu(self):
         print("-----Sistema de autencicación-----")
-        print("1. Registrar nuevo usuario\n2. Iniciar sesión\n3. Salir")
+        print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
     
 
 class Customer(User):
