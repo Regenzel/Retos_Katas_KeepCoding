@@ -1,5 +1,5 @@
-customers_data = {"Ivan":"hola"}
-admins_data = {}
+customers_data = {"Fer":"quetal"}
+admins_data = {"Ivan":"hola", "Fer":"quetal"}
 from clases_de_Reto2 import User
 from clases_de_Reto2 import Customer
 from clases_de_Reto2 import Admin
@@ -12,7 +12,10 @@ def register_menu():
         print("---Registro---")
         user_rol = input("¿El usuario es administrador o cliente?: ")
         user_name = input("Escriba el nombre de usuario: ")
+        if user_name in customers_data.keys() or user_name in admins_data.keys():
+            print("Usuario ya registrado")
         password = input("Escriba una contraseña: ")
+        
         if user_rol == "admin":
             admin = Admin(user_name, password)
             admins_data[admin.user]= admin.password
@@ -26,17 +29,17 @@ def login_menu():
     print("----Inicio de sesión----")
     user_name = input("Nombre de usuario: ")
     password = input("Contraseña: ")
-    if user_name in customers_data.keys():
+    if user_name in customers_data.keys() and password in customers_data.values():
         customers.menu()
-    if user_name in admins_data.keys():
-        admin.menu()
+    elif user_name in admins_data.keys() and password in admins_data.values():
+        admin.menu(customers_data.keys(), admins_data.keys())
     else:
         print("Introduzca un usuario existente")
 
 
 def general_menu():
     user.menu()
-    answer = input("**¿Que quieres hacer?: ")
+    answer = input("**Escriba el numero de opcion que quiera usar: ")
     if answer == "1":
         register_menu()
     if answer == "2":
