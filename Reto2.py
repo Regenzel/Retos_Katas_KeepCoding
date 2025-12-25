@@ -1,5 +1,6 @@
 customers_data = {"Fer":"quetal"}
 admins_data = {"Ivan":"hola", "Fer":"quetal"}
+#products = {"Tarjeta Grafica": "700€","CPU": "450€", "Memoria RAM": "9800€"}
 from clases_de_Reto2 import User
 from clases_de_Reto2 import Customer
 from clases_de_Reto2 import Admin
@@ -31,11 +32,20 @@ def login_menu():
     password = input("Contraseña: ")
     if user_name in customers_data.keys() and password in customers_data.values(): # Arreglar login
         customers.menu()
+        answer = input("**¿Que opción quiere usar?: ")
+        if answer == "1":
+            customers.see_products()
+        elif answer == "2":
+            customers.buy()
+        elif answer == "3":
+            pass # Configurar final del inicio de sesion  
     elif user_name in admins_data.keys() and password in admins_data.values(): # Arreglar login
-        admin.menu(customers_data.keys(), admins_data.keys())
+        admin.menu()
+        options = input("**¿Que opción quiere usar?: ")
+        if options == "1":
+            admin.see_users(customers_data.keys(), admins_data.keys())
     else:
         print("Introduzca un usuario existente")
-
 
 def general_menu():
     print("-----Sistema de autencicación-----")

@@ -17,10 +17,11 @@ class Customer(User):
     def buy(self):
         print("---Comprar---")
         print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
-        """if options == "1":
+        options = input("**¿Que quiere comprar? (elija numero): ")
+        if options == "1":
             print("---Productos---")
             print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
-        if options == "2":
+        elif options == "2":
             print("---Comprar---")
             print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
             buy = input("**Escriba el numero del producto que quiera comprar: ")
@@ -31,21 +32,20 @@ class Customer(User):
             elif buy == "3":
                 print("Memoria RAM adquirida")
             elif buy == "4":
-                pass"""
+                pass
 
 class Admin(User):
     role = "Admin"
-    def menu(self,customers,admins):
+    def menu(self):
         print("---Menú de Admin---")
         print("1. Ver lista de usuarios\n2. Crear nuevo usuario\n3. Eliminar usuarios\n4. Salir")
-        options = input("**Escriba el numero de opcion que quiera usar: ")
-        if options == "1":
-            print("-Los admins son: ")
-            for admin in admins:
-                print(admin)
-            print("-Los clientes son: ")
-            for customer in customers:
-                print(customer)
-        elif options == "2":
-            # Ver la manera de acceder al menu de registro en esta opcion
-                pass
+    def see_users(self,customers,admins):
+        print("-Los admins son: ")
+        for admin in admins:
+            print(admin)
+        print("-Los clientes son: ")
+        for customer in customers:
+            print(customer)
+    #elif options == "2":
+        # Ver la manera de acceder al menu de registro en esta opcion
+            pass
