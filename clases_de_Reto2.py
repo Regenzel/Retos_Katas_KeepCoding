@@ -4,18 +4,20 @@ class User:
         self.user = user
         self.password = password
     
-    def menu(self):
-        print("-----Sistema de autencicación-----")
-        print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
-    
 
 class Customer(User):
     role = "Customer"
     def menu(self):
         print("---Menú de Cliente---")
         print("1. Ver productos\n2. Comprar\n3. Salir")
-        options = input("**Escriba el numero de opcion que quiera usar: ")
-        if options == "1":
+        #options = input("**Escriba el numero de opcion que quiera usar: ")
+    def see_products(self):
+        print("---Productos---")
+        print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
+    def buy(self):
+        print("---Comprar---")
+        print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
+        """if options == "1":
             print("---Productos---")
             print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
         if options == "2":
@@ -29,7 +31,7 @@ class Customer(User):
             elif buy == "3":
                 print("Memoria RAM adquirida")
             elif buy == "4":
-                pass
+                pass"""
 
 class Admin(User):
     role = "Admin"

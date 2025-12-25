@@ -23,22 +23,23 @@ def register_menu():
             customer = Customer(user_name, password)
             customers_data[customer.user]= customer.password
             
-        print(f"{customers_data}{admins_data}")
+        print(f"{customers_data}{admins_data}") # Temporal hasta que funcione todo bien
 
 def login_menu():
     print("----Inicio de sesión----")
     user_name = input("Nombre de usuario: ")
     password = input("Contraseña: ")
-    if user_name in customers_data.keys() and password in customers_data.values():
+    if user_name in customers_data.keys() and password in customers_data.values(): # Arreglar login
         customers.menu()
-    elif user_name in admins_data.keys() and password in admins_data.values():
+    elif user_name in admins_data.keys() and password in admins_data.values(): # Arreglar login
         admin.menu(customers_data.keys(), admins_data.keys())
     else:
         print("Introduzca un usuario existente")
 
 
 def general_menu():
-    user.menu()
+    print("-----Sistema de autencicación-----")
+    print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
     answer = input("**Escriba el numero de opcion que quiera usar: ")
     if answer == "1":
         register_menu()
