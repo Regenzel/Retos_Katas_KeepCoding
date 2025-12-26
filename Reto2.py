@@ -1,5 +1,5 @@
 customers_data = {"Fer":"quetal"}
-admins_data = {"Ivan":"hola", "Fer":"quetal"}
+admins_data = {"Ivan":"hola", "Ferr":"quetal"}
 #products = {"Tarjeta Grafica": "700€","CPU": "450€", "Memoria RAM": "9800€"}
 from clases_de_Reto2 import User
 from clases_de_Reto2 import Customer
@@ -11,12 +11,11 @@ admin = Admin(admins_data.keys(), admins_data.values())
          
 def register_menu():
         print("---Registro---")
-        user_rol = input("¿El usuario es administrador o cliente?: ")
+        user_rol = input("¿El usuario es administrador o cliente? (admin/cliente): ")
         user_name = input("Escriba el nombre de usuario: ")
         if user_name in customers_data.keys() or user_name in admins_data.keys():
             print("Usuario ya registrado")
         password = input("Escriba una contraseña: ")
-        
         if user_rol == "admin":
             admin = Admin(user_name, password)
             admins_data[admin.user]= admin.password
@@ -24,7 +23,7 @@ def register_menu():
             customer = Customer(user_name, password)
             customers_data[customer.user]= customer.password
             
-        print(f"{customers_data}{admins_data}") # Temporal hasta que funcione todo bien
+        print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
 
 def login_menu():
     print("----Inicio de sesión----")
@@ -44,6 +43,19 @@ def login_menu():
         options = input("**¿Que opción quiere usar?: ")
         if options == "1":
             admin.see_users(customers_data.keys(), admins_data.keys())
+        elif options == "2":
+            register_menu()
+        elif options == "3":
+            which_role = input("¿Que rol tiene el usuario? (1. Admin, 2. Cliente): ")
+            if which_role == "1":
+                delete_user = input("¿Que usuario quiere eliminar?: ")
+                if delete_user in admins_data.keys():
+                    admins_data.pop(delete_user)
+            elif which_role == "2":
+                if delete_user in customers_data.keys():
+                    customers_data.pop(delete_user)
+            print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
+
     else:
         print("Introduzca un usuario existente")
 
