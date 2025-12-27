@@ -10,7 +10,6 @@ class Customer(User):
     def menu(self):
         print("---Menú de Cliente---")
         print("1. Ver productos\n2. Comprar\n3. Cerrar Sesión")
-        #options = input("**Escriba el numero de opcion que quiera usar: ")
     def see_products(self):
         print("---Productos---")
         print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
@@ -39,4 +38,3 @@ class Admin(User):
         print("-Los clientes son: ")
         for customer in customers:
             print(customer)
-            pass

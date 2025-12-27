@@ -29,46 +29,54 @@ def login_menu():
     print("----Inicio de sesión----")
     user_name = input("Nombre de usuario: ")
     password = input("Contraseña: ")
-    if user_name in customers_data.keys() and password in customers_data.values(): # Arreglar login
-        customers.menu()
-        answer = input("**¿Que opción quiere usar?: ")
-        if answer == "1":
-            customers.see_products()
-        elif answer == "2":
-            customers.buy()
-        elif answer == "3":
-            pass # Configurar final del inicio de sesion  
-    elif user_name in admins_data.keys() and password in admins_data.values(): # Arreglar login
-        admin.menu()
-        options = input("**¿Que opción quiere usar?: ")
-        if options == "1":
-            admin.see_users(customers_data.keys(), admins_data.keys())
-        elif options == "2":
-            register_menu()
-        elif options == "3":
-            which_role = input("¿Que rol tiene el usuario? (1. Admin, 2. Cliente): ")
-            if which_role == "1":
-                delete_user = input("¿Que usuario quiere eliminar?: ")
-                if delete_user in admins_data.keys():
-                    admins_data.pop(delete_user)
-            elif which_role == "2":
-                if delete_user in customers_data.keys():
-                    customers_data.pop(delete_user)
-            print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
+    if user_name in customers_data and customers_data[user_name] == password:
+        continue_customer = True
+        while continue_customer:
+            customers.menu()
+            answer = input("**¿Que opción quiere usar?: ")
+            if answer == "1":
+                customers.see_products()
+            elif answer == "2":
+                customers.buy()
+            elif answer == "3":
+                continue_customer = False  
+    elif user_name in admins_data and admins_data[user_name] == password:
+        continue_admin = True
+        while continue_admin:
+            admin.menu()
+            options = input("**¿Que opción quiere usar?: ")
+            if options == "1":
+                admin.see_users(customers_data.keys(), admins_data.keys())
+            elif options == "2":
+                register_menu()
+            elif options == "3":
+                which_role = input("¿Que rol tiene el usuario? (1. Admin, 2. Cliente): ")
+                if which_role == "1":
+                    delete_user = input("¿Que usuario quiere eliminar?: ")
+                    if delete_user in admins_data.keys():
+                        admins_data.pop(delete_user)
+                elif which_role == "2":
+                    if delete_user in customers_data.keys():
+                        customers_data.pop(delete_user)
+                print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
+            elif options == "4":
+                continue_admin = False
 
     else:
-        print("Introduzca un usuario existente")
+        print("Usuario o contraseña incorrecto o inexistente")
 
 def general_menu():
-    print("-----Sistema de autencicación-----")
-    print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
-    answer = input("**Escriba el numero de opcion que quiera usar: ")
-    if answer == "1":
-        register_menu()
-    if answer == "2":
-        login_menu()
-    if answer == "3":
-        pass
+    continue_general = True
+    while continue_general:
+        print("-----Sistema de autencicación-----")
+        print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
+        answer = input("**Escriba el numero de opcion que quiera usar: ")
+        if answer == "1":
+            register_menu()
+        if answer == "2":
+            login_menu()
+        if answer == "3":
+            continue_general = False
     
 general_menu()
     
