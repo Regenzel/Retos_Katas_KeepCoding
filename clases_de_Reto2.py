@@ -18,11 +18,11 @@ class Customer(User):
         print("1. Tarjeta Gráfica: 700€\n2. CPU: 450€\n3. Memoria RAM: 9800€\n4. Salir")
         buy = input("**¿Que quiere comprar? (elija numero): ")
         if buy == "1":
-            print("Tarjeta grafica adquirida")
+            print("**Tarjeta grafica adquirida**")
         elif buy == "2":
-            print("CPU adquirida")
+            print("**CPU adquirida**")
         elif buy == "3":
-            print("Memoria RAM adquirida")
+            print("**Memoria RAM adquirida**")
         elif buy == "4":
             pass
 

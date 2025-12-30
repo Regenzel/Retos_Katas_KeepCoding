@@ -10,18 +10,24 @@ admin = Admin(admins_data.keys(), admins_data.values())
 
          
 def register_menu():
-        print("---Registro---")
-        user_rol = input("¿El usuario es administrador o cliente? (admin/cliente): ")
-        user_name = input("Escriba el nombre de usuario: ")
-        if user_name in customers_data.keys() or user_name in admins_data.keys():
-            print("Usuario ya registrado")
-        password = input("Escriba una contraseña: ")
-        if user_rol == "admin":
-            admin = Admin(user_name, password)
-            admins_data[admin.user]= admin.password
-        elif user_rol == "cliente":
-            customer = Customer(user_name, password)
-            customers_data[customer.user]= customer.password
+        continue_register = True
+        while continue_register:
+            print("---Registro---")
+            user_rol = input("¿El usuario es administrador o cliente?\n(1. Admin/2. Cliente): ")
+            if user_rol not in "12":
+                print("Elija un rol valido (1. Admin/2. Cliente)")
+            user_name = input("Escriba el nombre de usuario: ")
+            password = input("Escriba una contraseña: ")
+            if user_name in customers_data.keys() or user_name in admins_data.keys():
+                print("Usuario ya registrado")
+            elif user_name not in customers_data.keys() or user_name not in admins_data.keys():
+                continue_register = False
+                if user_rol == "1":
+                    admin = Admin(user_name, password)
+                    admins_data[admin.user]= admin.password
+                elif user_rol == "2":
+                    customer = Customer(user_name, password)
+                    customers_data[customer.user]= customer.password
             
         print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
 
@@ -39,7 +45,9 @@ def login_menu():
             elif answer == "2":
                 customers.buy()
             elif answer == "3":
-                continue_customer = False  
+                continue_customer = False
+            else:
+                print("**Inserte una opción valida**")  
     elif user_name in admins_data and admins_data[user_name] == password:
         continue_admin = True
         while continue_admin:
@@ -61,6 +69,8 @@ def login_menu():
                 print(f"{customers_data}{admins_data}") # Temporal para comprobaciones
             elif options == "4":
                 continue_admin = False
+            else:
+                print("**Inserte una opción valida**")
 
     else:
         print("Usuario o contraseña incorrecto o inexistente")
@@ -68,7 +78,7 @@ def login_menu():
 def general_menu():
     continue_general = True
     while continue_general:
-        print("-----Sistema de autencicación-----")
+        print("-----Sistema de autenticación-----")
         print("1. Registrarse\n2. Iniciar sesión\n3. Salir")
         answer = input("**Escriba el numero de opcion que quiera usar: ")
         if answer == "1":
