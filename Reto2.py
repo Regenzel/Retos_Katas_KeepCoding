@@ -1,3 +1,8 @@
+"""Sistema de autenticación en Python que permite registrar,
+autenticar y gestionar usuarios con diferentes roles (como administradores y
+clientes). El sistema ofrece distintos niveles de acceso y funcionalidades
+dependiendo del rol del usuario."""
+
 customers_data = {"Fer":"quetal"}
 admins_data = {"Ivan":"hola", "Ferr":"quetal"}
 #products = {"Tarjeta Grafica": "700€","CPU": "450€", "Memoria RAM": "9800€"}
